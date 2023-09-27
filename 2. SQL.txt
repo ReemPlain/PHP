@@ -1,0 +1,14 @@
+1. Удалить пустые группы.
+
+DELETE FROM categories
+WHERE id NOT IN (SELECT DISTINCT category_id FROM products);
+
+2. Удалить товары без наличия.
+
+DELETE FROM products
+WHERE id NOT IN (SELECT DISTINCT product_id FROM availabilities);
+
+3. Удалить склады без товаров.
+
+DELETE FROM stocks
+WHERE id NOT IN (SELECT DISTINCT stock_id FROM availabilities);
